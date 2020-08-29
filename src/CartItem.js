@@ -1,8 +1,10 @@
 import React from 'react';
-
+// create a class which extends the reac component
 class CartItem extends React.Component {
     constructor (){
+        // calling parent constructor
         super();
+        // defining state
         this.state={
             price:999,
             title:'Mobile Phone',
@@ -11,10 +13,24 @@ class CartItem extends React.Component {
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
     }
+    // function to increase quantity
     increaseQuantity = () =>{
-        console.log(this);
+        // this.state.qty+=1;
+    // setState form 1
+        // this.setState({
+        //     qty:this.state.qty + 1
+        // });
+    // set state form 2 -if prevState rquired use this
+    this.setState((prevState) => {
+        return {
+            qty:prevState.qty + 1
+        }
+    })
+
     }
+    // returning jsx to be rendered
     render () {
+        // binding
         const {price,title,qty} = this.state;
         return(
             <div className="cart-item">
@@ -49,6 +65,7 @@ class CartItem extends React.Component {
         )
     }
 }
+// definig styles
 const styles = {
     image:{
         height:110,
@@ -57,4 +74,5 @@ const styles = {
         background:'#ccc'
     }
 }
+// exporting the class
 export default CartItem;
