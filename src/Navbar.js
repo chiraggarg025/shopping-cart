@@ -1,12 +1,12 @@
 import React from 'react';
 // create a class which extends the reac component
-    const Navbar = () => {
+    const Navbar = (props) => {
     // returning jsx to be rendered
         return(
             <div style={styles.nav}>
             <div style={styles.cartIconContainer}>
                 <img style={styles.cartIcon} src = "https://image.flaticon.com/icons/svg/1170/1170678.svg" alt="cart-icon"/>
-                <span style={styles.cartCount}>3</span>
+        <span style={styles.cartCount}>{props.count}</span>
             </div>
                 
             </div>
