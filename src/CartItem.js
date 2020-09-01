@@ -1,56 +1,12 @@
 import React from 'react';
 // create a class which extends the reac component
-class CartItem extends React.Component {
-    
-    // testing(){
-    //     const promise = new Promise((resolve,reject)=>{
-    //         setTimeout(()=>{
-    //             resolve('done');
-    //         },5000);
-    //     })
-    //     promise.then(()=>{
-    //         // setState acts like syncronous call
-    //         this.setState({qty:100});
-    //         console.log('state',this.state);
-    //     })
-    // }
-    // function to increase quantity
-    increaseQuantity = () =>{
-        // this.state.qty+=1;
-    // setState form 1
-        // this.setState({
-        //     qty:this.state.qty + 1
-        // });
-    // set state form 2 -if prevState required use this
-    this.setState((prevState) => {
-        return {
-            qty:prevState.qty + 1
-        }
-    },()=>{
-        console.log('this.state',this.state);
-    })
-
-    }
-    decreaseQuantity = () =>{
-     const {qty} = this.state;
-     if(qty===1){
-         return;
-     }
-    this.setState((prevState) => {
-        return {
-            qty:prevState.qty - 1 
-        }
-    })
-
-    }
-    // returning jsx to be rendered
-    render () {
+const CartItem = (props)=> {
         // binding
-        const {price,title,qty} = this.props.product;
+        const {price,title,qty} = props.product;
         const {product,
             onIncreaseQuantity,
             onDecreaseQuantity,
-            onDeleteProduct} =this.props;
+            onDeleteProduct} =props;
         return(
             <div className="cart-item">
                 <div className="left-block">
@@ -88,7 +44,7 @@ class CartItem extends React.Component {
             </div>
             
         )
-    }
+    
 }
 // definig styles
 const styles = {
