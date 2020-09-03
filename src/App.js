@@ -61,20 +61,46 @@ class App extends React.Component {
       console.log('increase by1',product);
       const {products} = this.state;
       const index = products.indexOf(product);
-      products[index].qty+=1;
-      this.setState({
-          products:products
+      // products[index].qty+=1;
+      // this.setState({
+      //     products:products
+      // })
+      // getting reference of the product
+      const docRef = this.db.collection('products').doc(products[index].id);
+
+      docRef
+      .update({
+        qty:products[index].qty +1
       })
+      .then(() => {
+        console.log("Updated Successfully")
+      })
+      .catch((error) =>{
+        console.log('Error :',error);
+      })
+
     }
     handleDecreaseQuantity = (product)=> {
       console.log('decrease by1',product);
       const {products} = this.state;
       const index = products.indexOf(product);
       if(products[index].qty===1)return;
-      products[index].qty-=1;
-      this.setState({
-          products:products
+      // products[index].qty-=1;
+      // this.setState({
+      //     products:products
+      // })
+      const docRef = this.db.collection('products').doc(products[index].id);
+      docRef
+      .update({
+        qty:products[index].qty -1
       })
+      .then(() => {
+        console.log("Updated Successfully")
+      })
+      .catch((error) =>{
+        console.log('Error :',error);
+      })
+
     }
     handleDeleteProduct =(id) =>{
       const {products} = this.state;
@@ -128,7 +154,7 @@ class App extends React.Component {
 
       <div className="App">
         <Navbar count = {this.getCartCount()}/>
-        <button  style={{padding:20,fontSize:20}} onClick={this.addProduct}>Add a product</button>
+        {/* <button  style={{padding:20,fontSize:20}} onClick={this.addProduct}>Add a product</button> */}
         <Cart
           products = {products}
           onIncreaseQuantity = {this.handleIncreaseQuantity}
